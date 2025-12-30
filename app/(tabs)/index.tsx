@@ -1,98 +1,188 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import BottomNav from "@/components/BottomNav";
+import Card from "@/components/Card";
+import Header from "@/components/Header";
+import HeroCard from "@/components/HeroCard";
+import ListRow from "@/components/ListRow";
+import RoomCard from "@/components/RoomCard";
+import SectionHeader from "@/components/SectionHeader";
+import { Theme } from "@/type";
+import React, { useMemo, useState } from "react";
+import {
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { indexStyles as styles } from "./index.styles";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+
+const darkTheme: Theme = {
+  bg: "#0F0F12",
+  surface: "#15151B",
+  surface2: "#1B1B23",
+  text: "#f3f3f6",
+  textMuted: "rgba(243, 243, 246, 0.68)",
+  border: "rgba(255,255,255,0.10)",
+  borderStrong: "rgba(255,255,255,0.16)",
+  primary: "#c45b3d",
+  primaryGlow: "rgba(196, 91, 61, 0.20)",
+  navBg: "rgba(15, 15, 18, 0.82)",
+  shadow1: "rgba(0,0,0,0.35)",
+};
+
+type NavKey = "Home" | "Rooms" | "Pantry" | "Recipes" | "AI" | "Profile";
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const theme = darkTheme;
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  const [activeTab, setActiveTab] = useState<NavKey>("Home");
+  const [aiPrompt, setAiPrompt] = useState("");
+
+  const rooms = useMemo(
+    () => [
+      { id: "1", name: "Living Room", devices: 4, on: 3, off: 1 },
+      { id: "2", name: "Living Room", devices: 4, on: 3, off: 1 },
+      { id: "3", name: "Living Room", devices: 4, on: 3, off: 1 },
+    ],
+    []
+  );
+
+  const expiring = useMemo(
+    () => [
+      { id: "e1", title: "Yogurt", sub: "Fridge • 4 pcs", tag: "Tomorrow" },
+      {
+        id: "e2",
+        title: "Chicken Breast",
+        sub: "Freezer • 1 kg",
+        tag: "2 days",
+      },
+    ],
+    []
+  );
+
+  return (
+    <SafeAreaView style={[styles.safe, { backgroundColor: theme.bg }]}>
+      <StatusBar barStyle="light-content" />
+
+      <View style={[styles.phone, { backgroundColor: theme.surface }]}>
+        <Header
+          theme={theme}
+          kicker="Home Pulse"
+          title="My Home"
+          onPressNotifications={() => {}}
+          onPressProfile={() => setActiveTab("Profile")}
+        />
+
+        <ScrollView
+          contentContainerStyle={[
+            styles.scrollContent,
+            { paddingBottom: 90 }, // space for bottom nav
+          ]}
+          showsVerticalScrollIndicator={false}
+        >
+          <HeroCard theme={theme} />
+
+          <SectionHeader
+            theme={theme}
+            title="Rooms"
+            actionLabel="Manage"
+            onPressAction={() => setActiveTab("Rooms")}
+          />
+
+          <View style={styles.sectionGap}>
+            {rooms.map((r) => (
+              <RoomCard
+                key={r.id}
+                theme={theme}
+                name={r.name}
+                devices={r.devices}
+                onCount={r.on}
+                offCount={r.off}
+                onPressAllOn={() => {}}
+                onPressAllOff={() => {}}
+                onPressCard={() => {}}
+              />
+            ))}
+          </View>
+
+          <SectionHeader
+            theme={theme}
+            title="Expiring Soon"
+            actionLabel="Open Pantry"
+            onPressAction={() => setActiveTab("Pantry")}
+          />
+
+          <Card
+            theme={theme}
+            style={{ paddingVertical: 0, overflow: "hidden" }}
+          >
+            {expiring.map((item, idx) => (
+              <ListRow
+                key={item.id}
+                theme={theme}
+                title={item.title}
+                sub={item.sub}
+                tag={item.tag}
+                showTopBorder={idx !== 0}
+              />
+            ))}
+          </Card>
+
+          <View style={{ height: 14 }} />
+
+          <Text style={[styles.sectionTitle, { color: theme.text }]}>
+            Vesta AI
+          </Text>
+          <Card theme={theme} style={{ padding: 14 }}>
+            <Text style={[styles.aiTitle, { color: theme.text }]}>
+              Need any help ?
+            </Text>
+
+            <View
+              style={[
+                styles.aiInputRow,
+                { borderColor: theme.border, backgroundColor: theme.surface2 },
+              ]}
+            >
+              <TextInput
+                value={aiPrompt}
+                onChangeText={setAiPrompt}
+                placeholder="What to cook for dinner ?"
+                placeholderTextColor={theme.textMuted}
+                style={[styles.aiInput, { color: theme.text }]}
+              />
+              <Pressable
+                onPress={() => {
+                  setAiPrompt("");
+                }}
+                style={({ pressed }) => [
+                  styles.aiSendBtn,
+                  {
+                    backgroundColor: theme.primary,
+                    opacity: pressed ? 0.9 : 1,
+                  },
+                ]}
+                accessibilityRole="button"
+                accessibilityLabel="Send to Vesta AI"
+              >
+                <Text style={[styles.aiSendText, { color: "#fff" }]}>➤</Text>
+              </Pressable>
+            </View>
+          </Card>
+
+          <View style={{ height: 18 }} />
+        </ScrollView>
+
+        <BottomNav
+          theme={theme}
+          active={activeTab}
+          onChange={(k) => setActiveTab(k)}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
