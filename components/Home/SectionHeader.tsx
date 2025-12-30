@@ -1,6 +1,6 @@
 import { Theme } from "@/type";
 import { Pressable, Text, View } from "react-native";
-import { sectionHeaderStyles as styles } from "./Home/SectionHeader.styles";
+import { sectionHeaderStyles as styles } from "./SectionHeader.styles";
 
 export default function SectionHeader(props: {
   theme: Theme;

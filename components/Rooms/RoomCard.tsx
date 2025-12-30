@@ -3,10 +3,11 @@ import { Text, View } from "react-native";
 import { Theme } from "@/type";
 
 
-import { roomCardStyles as styles } from "./RoomCard.styles.tsx";
+import { roomCardStyles as styles } from "./RoomCard.styles";
 import Card from "../Card";
 import Pill from "../Pill";
 import Button from "../Button";
+import DeviceRow from "./DeviceRow";
 
 type DeviceState = "on" | "off";
 type Device = { id: string; name: string; sub: string; state: DeviceState };

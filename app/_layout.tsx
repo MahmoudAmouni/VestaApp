@@ -5,14 +5,32 @@ import { Platform } from "react-native";
 
 export default function RootLayout() {
   useEffect(() => {
-    if (Platform.OS === "android") {
-      NavigationBar.setVisibilityAsync("hidden"); // hides nav buttons
-      NavigationBar.setBehaviorAsync("inset-swipe"); // swipe to reveal
+    async function setupAndroidNav() {
+      if (Platform.OS !== "android") return;
+
+      await NavigationBar.setBackgroundColorAsync("#0f0f12");
+      await NavigationBar.setButtonStyleAsync("light");
+
+      await NavigationBar.setVisibilityAsync("hidden");
+      await NavigationBar.setBehaviorAsync("inset-swipe");
     }
+
+    setupAndroidNav();
   }, []);
+
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+
+        animation: "fade",
+        animationDuration: 0,
+
+        gestureEnabled: true,
+      }}
+    >
       <Stack.Screen name="index" />
+      <Stack.Screen name="rooms" />
       <Stack.Screen name="pantry" />
       <Stack.Screen name="recipes" />
       <Stack.Screen name="ai" />
