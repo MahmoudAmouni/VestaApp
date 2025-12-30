@@ -83,7 +83,18 @@ export default function HomeScreen() {
           ]}
           showsVerticalScrollIndicator={false}
         >
-          <HeroCard theme={theme} />
+          <HeroCard
+            theme={theme}
+            kicker="Today’s vibe"
+            title="Calm & ready."
+            sub="A quick snapshot of your space — lights, pantry, and what’s coming up."
+            kpis={[
+              { label: "Devices ON", value: "3", hint: "Kitchen + Living" },
+              { label: "Offline", value: "0", hint: "All online" },
+              { label: "Expiring soon", value: "2", hint: "Next 48hr" },
+              { label: "Saved Recipes", value: "12", hint: "Start Cooking!" },
+            ]}
+          />
 
           <SectionHeader
             theme={theme}

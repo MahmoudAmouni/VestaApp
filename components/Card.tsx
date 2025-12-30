@@ -1,17 +1,26 @@
+import React from "react";
+import { Platform, StyleSheet, View, StyleProp, ViewStyle } from "react-native";
 import { Theme } from "@/type";
-import { Platform, StyleSheet, View } from "react-native";
 
 export default function Card(props: {
   theme: Theme;
   children: React.ReactNode;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
+
+  padding?: number; 
+  radius?: number; 
+  noShadow?: boolean; 
 }) {
-  const { theme } = props;
+  const { theme, padding = 18, radius = 18, noShadow = false } = props;
+
   return (
     <View
       style={[
         styles.card,
+        noShadow && styles.noShadow,
         {
+          padding,
+          borderRadius: radius,
           backgroundColor: theme.surface,
           borderColor: theme.border,
           shadowColor: theme.shadow1,
@@ -27,8 +36,6 @@ export default function Card(props: {
 const styles = StyleSheet.create({
   card: {
     borderWidth: 1,
-    borderRadius: 18,
-    padding: 18,
     ...Platform.select({
       ios: {
         shadowOpacity: 0.25,
@@ -41,4 +48,9 @@ const styles = StyleSheet.create({
       default: {},
     }),
   },
+  noShadow: Platform.select({
+    ios: { shadowOpacity: 0 },
+    android: { elevation: 0 },
+    default: {},
+  }) as ViewStyle,
 });
