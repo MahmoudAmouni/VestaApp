@@ -1,6 +1,6 @@
 import { Theme } from "@/type";
 import { Text, View } from "react-native";
-import { listRowStyles  as styles} from "./ListRow.styles";
+import { listRowStyles  as styles} from "./Home/ListRow.styles";
 
 export default function ListRow(props: {
   theme: Theme;

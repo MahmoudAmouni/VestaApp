@@ -2,8 +2,8 @@ import BottomNav from "@/components/BottomNav";
 import Card from "@/components/Card";
 import Header from "@/components/Header";
 import HeroCard from "@/components/HeroCard";
+import RoomCard from "@/components/Home/RoomCard";
 import ListRow from "@/components/ListRow";
-import RoomCard from "@/components/RoomCard";
 import SectionHeader from "@/components/SectionHeader";
 import { Theme } from "@/type";
 import React, { useMemo, useState } from "react";
@@ -17,7 +17,6 @@ import {
   View,
 } from "react-native";
 import { indexStyles as styles } from "./index.styles";
-
 
 const darkTheme: Theme = {
   bg: "#0F0F12",
@@ -196,4 +195,3 @@ export default function HomeScreen() {
     </SafeAreaView>
   );
 }
-

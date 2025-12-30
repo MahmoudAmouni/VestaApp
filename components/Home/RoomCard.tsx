@@ -1,8 +1,8 @@
 import { Theme } from "@/type";
 import { Text, View } from "react-native";
-import Button from "./Button";
-import Card from "./Card";
-import Pill from "./Pill";
+import Button from "../Button";
+import Card from "../Card";
+import Pill from "../Pill";
 import { roomStyles as styles } from "./RoomCard.styles";
 
 export default function RoomCard(props: {
