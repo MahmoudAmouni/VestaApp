@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleProp, Text, View, ViewStyle } from "react-native";
 import { Theme } from "@/type";
 
 
@@ -11,12 +11,22 @@ export default function RoomsSectionHeader(props: {
   title: string;
   actionLabel: string;
   onPressAction: () => void;
+  titleSize?: number;
+  style?: StyleProp<ViewStyle>;
 }) {
   const { theme } = props;
+  const titleSize = props.titleSize ?? 16;
 
   return (
-    <View style={styles.row}>
-      <Text style={[styles.title, { color: theme.text }]}>{props.title}</Text>
+    <View style={[styles.row, props.style]}>
+      <Text
+        style={[
+          styles.title,
+          { color: theme.text, fontSize: titleSize },
+        ]}
+      >
+        {props.title}
+      </Text>
       <Button
         theme={theme}
         variant="primary"

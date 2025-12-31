@@ -3,11 +3,15 @@ import { StyleSheet } from "react-native";
 export const quickActionTileStyles = StyleSheet.create({
   wrap: {
     borderWidth: 1,
-    borderRadius: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-    minHeight: 72,
+    borderRadius: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 14,
+    minHeight: 78,
     justifyContent: "space-between",
+
+    // 2-up grid like the Figma (works with parent flexWrap)
+    flexBasis: "48%",
+    flexGrow: 1,
   },
   label: {
     fontSize: 12,

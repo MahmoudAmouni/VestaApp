@@ -36,8 +36,13 @@ export default function RoomCard(props: {
         <Pill
           theme={theme}
           text={`${room.count} device${room.count === 1 ? "" : "s"}`}
+          paddingX={10}
+          paddingY={5}
+          style={{ backgroundColor: theme.surface2 }}
         />
       </View>
+
+      <View style={[styles.divider, { backgroundColor: theme.border }]} />
 
       <View style={styles.preview}>
         {room.devices.slice(0, 2).map((d) => (
@@ -45,19 +50,31 @@ export default function RoomCard(props: {
         ))}
       </View>
 
-      <View style={styles.footer}>
-        <Text style={[styles.hint, { color: theme.textMuted }]}>
-          {room.moreCount > 0 ? `+ ${room.moreCount} more devices` : " "}
-        </Text>
+      {room.moreCount > 0 ? (
+        <View style={styles.footer}>
+          <Text style={[styles.hint, { color: theme.textMuted }]}>
+            {`+ ${room.moreCount} more devices`}
+          </Text>
 
-        <Button
-          theme={theme}
-          variant="secondary"
-          label="Open room"
-          onPress={props.onPressOpen}
-          style={styles.openBtn}
-        />
-      </View>
+          <Button
+            theme={theme}
+            variant="secondary"
+            label="Open room"
+            onPress={props.onPressOpen}
+            style={styles.openBtn}
+          />
+        </View>
+      ) : (
+        <View style={styles.footerSolo}>
+          <Button
+            theme={theme}
+            variant="secondary"
+            label="Open room"
+            onPress={props.onPressOpen}
+            style={styles.openBtnSolo}
+          />
+        </View>
+      )}
     </Card>
   );
 }

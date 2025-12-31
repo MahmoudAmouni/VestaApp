@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const heroCardStyles = StyleSheet.create({
   heroCard: {
-    borderRadius: 20,
+    borderRadius: 18,
   },
   heroTop: {
     flexDirection: "row",
@@ -17,15 +17,15 @@ export const heroCardStyles = StyleSheet.create({
     fontWeight: "700",
   },
   heroTitle: {
-    marginTop: 6,
-    fontSize: 22,
+    marginTop: 2,
+    fontSize: 18,
     fontWeight: "900",
     letterSpacing: -0.2,
   },
   heroSub: {
-    marginTop: 8,
-    fontSize: 13,
-    lineHeight: 18,
+    marginTop: 6,
+    fontSize: 12,
+    lineHeight: 16,
   },
 
   heroBadge: {

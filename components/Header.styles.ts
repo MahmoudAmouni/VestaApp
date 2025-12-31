@@ -1,52 +1,48 @@
 import { StyleSheet } from "react-native";
 
 export const headerStyles = StyleSheet.create({
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 10,
+  wrap: {
+    paddingHorizontal: 14,
     paddingBottom: 10,
+    borderBottomWidth: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderBottomWidth: 1,
-
   },
-
   left: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 12,
-    flex: 1,
+    gap: 10,
   },
-
-  brandMark: {
-    width: 46,
-    height: 46,
-    borderRadius: 8,
+  logo: {
+    width: 22,
+    height: 22,
+    borderRadius: 6,
     borderWidth: 1,
   },
-
-  brandText: {
-    flexShrink: 1,
+  textBlock: {
+    gap: 2,
   },
-
   title: {
-    fontSize: 28,
+    fontSize: 16,
     fontWeight: "900",
-    letterSpacing: -0.3,
-    lineHeight: 32,
+    letterSpacing: -0.2,
   },
-
-  subtitle: {
-    marginTop: 2,
-    fontSize: 14,
-    fontWeight: "600",
-    opacity: 0.9,
+  kicker: {
+    fontSize: 12,
+    fontWeight: "700",
   },
-
-  right: {
+  actions: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 12,
+    gap: 10,
+  },
+  iconBtn: {
+    width: 34,
+    height: 34,
+    borderRadius: 12,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

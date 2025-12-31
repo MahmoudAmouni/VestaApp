@@ -1,20 +1,21 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Theme } from "@/type";
 
 import BottomNav from "@/components/BottomNav";
-import Header from "@/components/Header";
-import HeroCard from "@/components/HeroCard";
-import RoomCard from "@/components/Home/RoomCard";
+import RoomsHero from "@/components/Rooms/RoomsHero";
+import RoomCard from "@/components/Rooms/RoomCard";
 import RoomsSectionHeader from "@/components/Rooms/RoomSectionHeader";
-import { roomsStyles as styles } from "./rooms.styles";
 
-type NavKey = "Home" | "Rooms" | "Pantry" | "Recipes" | "AI" | "Profile";
+import { roomsStyles as styles } from "./rooms.styles";
+import Header from "@/components/Header";
+import { useRouter } from "expo-router";
 
 type DeviceState = "on" | "off";
 type Device = { id: string; name: string; sub: string; state: DeviceState };
+
 type Room = {
   id: string;
   name: string;
@@ -24,6 +25,7 @@ type Room = {
 };
 
 export default function RoomsScreen() {
+  // NOTE: keep the same Theme shape you already use across the app.
   const theme: Theme = (globalThis as any).theme ?? {
     bg: "#0f0f12",
     surface: "#15151b",
@@ -36,10 +38,11 @@ export default function RoomsScreen() {
     navBg: "rgba(15, 15, 18, 0.82)",
     shadow1: "rgba(0,0,0,0.35)",
   };
-
+  const router = useRouter();
   const insets = useSafeAreaInsets();
-  const [active, setActive] = useState<NavKey>("Rooms");
 
+  // Demo data — replace with your store/API.
+  // Kept to match the Figma screenshot layout.
   const rooms: Room[] = useMemo(
     () => [
       {
@@ -48,8 +51,8 @@ export default function RoomsScreen() {
         count: 4,
         moreCount: 2,
         devices: [
-          { id: "tv", name: "TV", sub: "Online", state: "on" },
-          { id: "lamp", name: "Lamp", sub: "Online", state: "on" },
+          { id: "tv", name: "TV", sub: "", state: "on" },
+          { id: "lamp", name: "Lamp", sub: "", state: "on" },
         ],
       },
       {
@@ -58,8 +61,8 @@ export default function RoomsScreen() {
         count: 3,
         moreCount: 1,
         devices: [
-          { id: "kLight", name: "Kitchen Light", sub: "Online", state: "on" },
-          { id: "fridge", name: "Fridge", sub: "Online", state: "on" },
+          { id: "kLight", name: "Kitchen Light", sub: "", state: "on" },
+          { id: "fridge", name: "Fridge", sub: "", state: "on" },
         ],
       },
       {
@@ -67,67 +70,70 @@ export default function RoomsScreen() {
         name: "Bedroom",
         count: 1,
         moreCount: 0,
-        devices: [
-          { id: "heater", name: "Heater", sub: "Online", state: "off" },
-        ],
+        devices: [{ id: "heater", name: "Heater", sub: "", state: "off" }],
       },
     ],
     []
   );
 
+
   return (
     <View style={[styles.safe, { backgroundColor: theme.bg }]}>
-      <View style={{ paddingTop: insets.top }}>
-        <Header
-          theme={theme}
-          title="Vesta"
-          kicker="Rooms"
-          onPressNotifications={() => {}}
-          onPressProfile={() => {}}
-        />
-      </View>
+      <View style={styles.frame}>
+        <View style={styles.container}>
+          <Header
+            theme={theme}
+            title="Vesta"
+            kicker="Rooms"
+            onPressProfile={() => {}}
+            onPressNotifications={() => {}}
+          />
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          styles.content,
-          { paddingBottom: insets.bottom + 96 }, 
-        ]}
-      >
-        <HeroCard
-          theme={theme}
-          kicker="Every room"
-          title="Every room, simplified."
-          sub='Preview devices by room — tap "Open room" to control everything.'
-          kpis={[
-            { label: "Total devices", value: "7" },
-            { label: "Devices ON", value: "3" },
-            { label: "Devices OFF", value: "4" },
-            { label: "Quick tip", value: "Tap a room", small: true },
-          ]}
-        />
-
-        <RoomsSectionHeader
-          theme={theme}
-          title="Rooms"
-          actionLabel="Add room"
-          onPressAction={() => {}}
-        />
-
-        <View style={styles.list}>
-          {rooms.map((room) => (
-            <RoomCard
-              key={room.id}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={[
+              styles.content,
+              { paddingBottom: insets.bottom + 96 },
+            ]}
+          >
+            <RoomsHero
               theme={theme}
-              room={room}
-              onPressOpen={() => {}}
+              title="Every room, simplified."
+              sub={
+                'Preview devices by room. Tap "Open room" to\ncontrol everything.'
+              }
+              stats={[
+                { label: "Total devices", value: "7" },
+                { label: "Devices ON", value: "3" },
+                { label: "Devices OFF", value: "4" },
+                { label: "Quick tip", value: "Tap a room" },
+              ]}
             />
-          ))}
-        </View>
-      </ScrollView>
 
-      <View style={{ paddingBottom: insets.bottom }}>
-        <BottomNav theme={theme} active={active} onChange={setActive} />
+            <RoomsSectionHeader
+              theme={theme}
+              title="Rooms"
+              actionLabel="Add room"
+              onPressAction={() => {}}
+              style={{ marginTop: 14 }}
+            />
+
+            <View style={styles.list}>
+              {rooms.map((room) => (
+                <RoomCard
+                  key={room.id}
+                  theme={theme}
+                  room={room}
+                  onPressOpen={() => router.push("/roomDetail")}
+                />
+              ))}
+            </View>
+          </ScrollView>
+
+          <View style={{ paddingBottom: insets.bottom }}>
+            <BottomNav theme={theme} />
+          </View>
+        </View>
       </View>
     </View>
   );

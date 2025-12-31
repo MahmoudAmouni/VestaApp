@@ -22,4 +22,17 @@ export const deviceRowStyles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "600",
   },
+  right: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  iconBtn: {
+    width: 30,
+    height: 30,
+    borderRadius: 10,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

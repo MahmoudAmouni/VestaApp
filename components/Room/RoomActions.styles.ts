@@ -4,7 +4,6 @@ export const roomActionsStyles = StyleSheet.create({
   row: {
     flexDirection: "row",
     gap: 10,
-    marginTop: 14,
   },
   btn: {
     flex: 1,
@@ -17,5 +16,10 @@ export const roomActionsStyles = StyleSheet.create({
   btnText: {
     fontSize: 13,
     fontWeight: "900",
+  },
+  btnContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
 });

@@ -17,7 +17,7 @@ export default function QuickActionTile(props: {
       style={({ pressed }) => [
         styles.wrap,
         {
-          backgroundColor: theme.surface2,
+          backgroundColor: theme.bg,
           borderColor: theme.border,
           opacity: pressed ? 0.9 : 1,
         },

@@ -1,6 +1,7 @@
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Theme } from "@/type";
 import { roomHeaderStyles as styles } from "./RoomHeader.styles";
 
@@ -11,12 +12,14 @@ export default function RoomHeader(props: {
   onAddDevice?: () => void;
 }) {
   const { theme } = props;
+  const insets = useSafeAreaInsets();
 
   return (
     <View
       style={[
         styles.wrap,
         {
+          paddingTop: insets.top + 10,
           backgroundColor: theme.bg,
           borderColor: theme.border,
         },
@@ -36,7 +39,7 @@ export default function RoomHeader(props: {
           accessibilityRole="button"
           accessibilityLabel="Back"
         >
-          <Ionicons name="chevron-back" size={18} color={theme.text} />
+          <Ionicons name="chevron-back" size={20} color={theme.text} />
         </Pressable>
 
         <Text style={[styles.title, { color: theme.text }]}>{props.title}</Text>
@@ -55,8 +58,8 @@ export default function RoomHeader(props: {
         accessibilityRole="button"
         accessibilityLabel="Add Device"
       >
-        <Ionicons name="add" size={16} color={theme.text} />
-        <Text style={[styles.addText, { color: theme.text }]}>Add Device</Text>
+        <Ionicons name="add" size={16} color={theme.textMuted} />
+        <Text style={[styles.addText, { color: theme.textMuted }]}>Add Device</Text>
       </Pressable>
     </View>
   );

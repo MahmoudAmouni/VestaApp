@@ -17,7 +17,15 @@ export default function DeviceStatePill(props: {
       theme={theme}
       text={isOn ? "ON" : "OFF"}
       variant={isOn ? "primary" : "surface"}
-      style={styles.pill}
+      paddingX={12}
+      paddingY={5}
+      style={[
+        styles.pill,
+        !isOn && {
+          backgroundColor: theme.surface,
+          borderColor: theme.borderStrong ?? theme.border,
+        },
+      ]}
     />
   );
 }

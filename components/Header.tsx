@@ -1,67 +1,83 @@
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Text, View } from "react-native";
-
+import { Pressable, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Theme } from "@/type";
+
 import { headerStyles as styles } from "./Header.styles";
-import IconButton from "./IconButton";
-import {  useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Header(props: {
   theme: Theme;
-  kicker: string;
   title: string;
-  onPressNotifications: () => void;
-  onPressProfile: () => void;
+  kicker: string;
+  onPressProfile?: () => void;
+  onPressNotifications?: () => void;
 }) {
   const { theme } = props;
-  const insets = useSafeAreaInsets()
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style ={{paddingTop:insets.top}}>
-      <View
-        style={[
-          styles.header,
-          { borderColor: theme.border },
-          { backgroundColor: theme.bg },
-        ]}
-      >
-        <View style={styles.left}>
-          <View
-            style={[
-              styles.brandMark,
-              { backgroundColor: theme.surface2, borderColor: theme.border },
-            ]}
-          />
-          <View style={styles.brandText}>
-            <Text style={[styles.title, { color: theme.text }]}>
-              {props.title}
-            </Text>
-            <Text style={[styles.subtitle, { color: theme.textMuted }]}>
-              {props.kicker}
-            </Text>
-          </View>
-        </View>
+    <View
+      style={[
+        styles.wrap,
+        {
+          paddingTop: insets.top + 10,
+          backgroundColor: theme.bg,
+          borderColor: theme.border,
+        },
+      ]}
+    >
+      <View style={styles.left}>
+        <View
+          style={[
+            styles.logo,
+            { backgroundColor: theme.surface2, borderColor: theme.border },
+          ]}
+        />
 
-        <View style={styles.right}>
-          <IconButton
-            theme={theme}
-            label="Profile"
-            onPress={props.onPressProfile}
-            icon={(color, size) => (
-              <Ionicons name="person-outline" color={color} size={size} />
-            )}
-          />
-
-          <IconButton
-            theme={theme}
-            label="Notifications"
-            onPress={props.onPressNotifications}
-            icon={(color, size) => (
-              <Ionicons name="bag-outline" color={color} size={size} />
-            )}
-          />
+        <View style={styles.textBlock}>
+          <Text style={[styles.title, { color: theme.text }]}>
+            {props.title}
+          </Text>
+          <Text style={[styles.kicker, { color: theme.textMuted }]}>
+            {props.kicker}
+          </Text>
         </View>
+      </View>
+
+      <View style={styles.actions}>
+        <Pressable
+          onPress={props.onPressProfile}
+          style={({ pressed }) => [
+            styles.iconBtn,
+            {
+              backgroundColor: theme.surface2,
+              borderColor: theme.border,
+              opacity: pressed ? 0.85 : 1,
+            },
+          ]}
+          accessibilityRole="button"
+          accessibilityLabel="Profile"
+        >
+          <Ionicons name="person-outline" size={18} color={theme.text} />
+        </Pressable>
+
+        <Pressable
+          onPress={props.onPressNotifications}
+          style={({ pressed }) => [
+            styles.iconBtn,
+            {
+              backgroundColor: theme.surface2,
+              borderColor: theme.border,
+              opacity: pressed ? 0.85 : 1,
+            },
+          ]}
+          accessibilityRole="button"
+          accessibilityLabel="Notifications"
+        >
+          {/* FIX: use notifications icon (not bag) */}
+          <Ionicons name="notifications-outline" size={18} color={theme.text} />
+        </Pressable>
       </View>
     </View>
   );

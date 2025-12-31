@@ -16,6 +16,11 @@ export const roomCardStyles = StyleSheet.create({
     marginTop: 12,
     gap: 10,
   },
+  divider: {
+    marginTop: 12,
+    height: StyleSheet.hairlineWidth,
+    opacity: 0.9,
+  },
   footer: {
     marginTop: 12,
     flexDirection: "row",
@@ -23,12 +28,23 @@ export const roomCardStyles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
   },
+  footerSolo: {
+    marginTop: 12,
+    alignItems: "center",
+  },
   hint: {
     fontSize: 12,
     fontWeight: "900",
   },
   openBtn: {
     flexGrow: 0,
-    minWidth: 120,
+    minWidth: 128,
+    height: 36,
+    borderRadius: 12,
+  },
+  openBtnSolo: {
+    minWidth: 160,
+    height: 36,
+    borderRadius: 12,
   },
 });

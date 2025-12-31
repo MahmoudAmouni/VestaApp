@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const roomsSectionHeaderStyles = StyleSheet.create({
   row: {
-    marginTop: 6,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -14,5 +13,8 @@ export const roomsSectionHeaderStyles = StyleSheet.create({
   },
   actionBtn: {
     flexGrow: 0,
+    height: 30,
+    paddingHorizontal: 14,
+    borderRadius: 10,
   },
 });

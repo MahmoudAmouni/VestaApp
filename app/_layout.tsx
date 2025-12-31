@@ -30,6 +30,7 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen name="index" />
+      <Stack.Screen name="roomDetail" />
       <Stack.Screen name="rooms" />
       <Stack.Screen name="pantry" />
       <Stack.Screen name="recipes" />

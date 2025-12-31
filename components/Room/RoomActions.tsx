@@ -1,5 +1,6 @@
 import React from "react";
 import { Pressable, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { Theme } from "@/type";
 import { roomActionsStyles as styles } from "./RoomActions.styles";
 
@@ -17,7 +18,7 @@ export default function RoomActions(props: {
         style={({ pressed }) => [
           styles.btn,
           {
-            backgroundColor: theme.surface2,
+            backgroundColor: theme.bg,
             borderColor: theme.border,
             opacity: pressed ? 0.9 : 1,
           },
@@ -25,7 +26,10 @@ export default function RoomActions(props: {
         accessibilityRole="button"
         accessibilityLabel="Edit Room"
       >
-        <Text style={[styles.btnText, { color: theme.text }]}>Edit Room</Text>
+        <View style={styles.btnContent}>
+          <Ionicons name="create-outline" size={16} color={theme.text} />
+          <Text style={[styles.btnText, { color: theme.text }]}>Edit Room</Text>
+        </View>
       </Pressable>
 
       <Pressable
@@ -41,7 +45,10 @@ export default function RoomActions(props: {
         accessibilityRole="button"
         accessibilityLabel="Delete Room"
       >
-        <Text style={[styles.btnText, { color: theme.bg }]}>Delete Room</Text>
+        <View style={styles.btnContent}>
+          <Ionicons name="trash-outline" size={16} color={theme.bg} />
+          <Text style={[styles.btnText, { color: theme.bg }]}>Delete Room</Text>
+        </View>
       </Pressable>
     </View>
   );
