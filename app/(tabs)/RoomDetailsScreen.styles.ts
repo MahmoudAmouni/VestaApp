@@ -1,8 +1,14 @@
 import { StyleSheet } from "react-native";
 
 export const roomDetailsStyles = StyleSheet.create({
+  safe: {
+    flex: 1,
+  },
   screen: {
     flex: 1,
+    alignSelf: "center",
+    width: "100%",
+    maxWidth: 430,
   },
   scroll: {
     paddingHorizontal: 14,

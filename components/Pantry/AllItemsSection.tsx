@@ -3,9 +3,9 @@ import { Text, View } from "react-native";
 import { Theme } from "@/type";
 
 import Button from "@/components/Button";
-import PantryItemCard from "./PantryItemCard";
 
 import { allItemsSectionStyles as styles } from "./AllItemsSection.styles";
+import PantryItemCard from "./PantryItemCard";
 
 export type PantryItem = {
   id: string;
