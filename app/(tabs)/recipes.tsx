@@ -1,20 +1,20 @@
+import { router } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { ScrollView, View } from "react-native";
 import {
-  useSafeAreaInsets,
   SafeAreaView,
+  useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import { router } from "expo-router";
 
 import { Theme } from "@/type";
 
 import BottomNav from "@/components/BottomNav";
-import HeroCard from "@/components/HeroCard";
 import Button from "@/components/Button";
 import Header from "@/components/Header";
+import HeroCard from "@/components/HeroCard";
 
-import { recipesScreenStyles as styles } from "./recipe.styles";
 import RecipesSection from "@/components/Recipe/RecipeSection";
+import { recipesScreenStyles as styles } from "./recipe.styles";
 
 const darkTheme: Theme = {
   bg: "#0F0F12",
@@ -31,7 +31,7 @@ const darkTheme: Theme = {
 };
 
 export default function RecipesScreen() {
-  const theme = darkTheme
+  const theme = darkTheme;
   const insets = useSafeAreaInsets();
 
   const [savedIds, setSavedIds] = useState<Record<string, boolean>>({
@@ -112,7 +112,9 @@ export default function RecipesScreen() {
             recipes={recipes}
             isSaved={(id) => !!savedIds[id]}
             onToggleSave={toggleSave}
-            onPressCook={(id) => {}}
+            onPressCook={(id) => {
+              router.push("/recipeDetail");
+            }}
           />
         </ScrollView>
 

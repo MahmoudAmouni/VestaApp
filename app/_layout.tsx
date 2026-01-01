@@ -35,6 +35,7 @@ export default function RootLayout() {
       <Stack.Screen name="rooms" />
       <Stack.Screen name="pantry" />
       <Stack.Screen name="recipes" />
+      <Stack.Screen name="recipeDetail" />
       <Stack.Screen name="ai" />
       <Stack.Screen name="profile" />
     </Stack>
