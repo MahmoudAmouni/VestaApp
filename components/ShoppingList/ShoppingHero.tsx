@@ -5,7 +5,7 @@ import { Theme } from "@/type";
 import HeroCard from "@/components/HeroCard";
 import Button from "@/components/Button";
 
-import { shoppingHeroStyles as styles } from "./ShoppingHero.styles.ts";
+import { shoppingHeroStyles as styles } from "./ShoppingHero.styles";
 
 export default function ShoppingHero(props: {
   theme: Theme;

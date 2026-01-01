@@ -3,7 +3,7 @@ import { Pressable, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Theme } from "@/type";
 
-import { shoppingHeaderStyles as styles } from "./ShoppingHeader.styles.ts";
+import { shoppingHeaderStyles as styles } from "./ShoppingHeader.styles";
 
 export default function ShoppingHeader(props: {
   theme: Theme;

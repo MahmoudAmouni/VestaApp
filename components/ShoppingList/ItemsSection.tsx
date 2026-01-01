@@ -1,13 +1,12 @@
 import React from "react";
-import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Theme } from "@/type";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 
+import { itemsSectionStyles as styles } from "./ItemsSection.styles";
 import ShoppingItemRow from "./ShoppingItemRow";
-import { itemsSectionStyles as styles } from "./ItemsSection.styles.ts";
 
 export type ShoppingItem = {
   id: string;

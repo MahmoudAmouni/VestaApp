@@ -4,7 +4,7 @@ import { Theme } from "@/type";
 
 import Pill from "@/components/Pill";
 
-import { shoppingItemRowStyles as styles } from "./ShoppingItemRow.styles.ts";
+import { shoppingItemRowStyles as styles } from "./ShoppingItemRow.styles";
 import { ShoppingItem } from "./ItemsSection";
 
 export default function ShoppingItemRow(props: {
