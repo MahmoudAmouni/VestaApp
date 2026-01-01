@@ -9,7 +9,6 @@ export const quickActionTileStyles = StyleSheet.create({
     minHeight: 78,
     justifyContent: "space-between",
 
-    // 2-up grid like the Figma (works with parent flexWrap)
     flexBasis: "48%",
     flexGrow: 1,
   },

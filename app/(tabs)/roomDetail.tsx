@@ -27,7 +27,6 @@ export default function RoomDetailsScreen(props: { theme: Theme }) {
     shadow1: "rgba(0,0,0,0.35)",
   };
 
-  // demo data – wire to your store/api
   const devices = [
     {
       id: "1",

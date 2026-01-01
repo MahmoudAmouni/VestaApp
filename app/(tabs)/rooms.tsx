@@ -25,7 +25,6 @@ type Room = {
 };
 
 export default function RoomsScreen() {
-  // NOTE: keep the same Theme shape you already use across the app.
   const theme: Theme = (globalThis as any).theme ?? {
     bg: "#0f0f12",
     surface: "#15151b",
@@ -41,8 +40,6 @@ export default function RoomsScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
 
-  // Demo data — replace with your store/API.
-  // Kept to match the Figma screenshot layout.
   const rooms: Room[] = useMemo(
     () => [
       {

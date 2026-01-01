@@ -2,8 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const roomsHeroStatStyles = StyleSheet.create({
   card: {
-    // Two-column tile in a wrapping row.
-    // flexBasis percent keeps it stable across native + web.
     flexGrow: 1,
     flexBasis: "48%",
     borderWidth: 1,

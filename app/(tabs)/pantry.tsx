@@ -70,7 +70,6 @@ export default function Pantry() {
           ]}
           showsVerticalScrollIndicator={false}
         >
-          {/* ✅ HeroCard inline (no PantryHero component file) */}
           <HeroCard
             theme={theme}
             title="Cook from what's inside."

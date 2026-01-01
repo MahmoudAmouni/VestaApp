@@ -98,12 +98,11 @@ export default function RecipesScreen() {
               { label: "More Recipes ?", value: "Ask Ai" },
             ]}
           >
-            {/* ✅ New button inside hero */}
             <Button
               theme={theme}
               variant="secondary"
               label="Saved recipes"
-              onPress={() => router.push("/recipes/saved")}
+              onPress={() => router.push("/savedRecipes")}
               style={styles.heroBtn}
             />
           </HeroCard>

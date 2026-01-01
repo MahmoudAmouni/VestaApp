@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const roomsStyles = StyleSheet.create({
   safe: { flex: 1 },
 
-  // Centers the app on wide screens (web/tablet) and keeps phone-like width.
   frame: {
     flex: 1,
     alignItems: "center",

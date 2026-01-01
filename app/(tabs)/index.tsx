@@ -79,7 +79,7 @@ export default function HomeScreen() {
         <ScrollView
           contentContainerStyle={[
             styles.scrollContent,
-            { paddingBottom: 90 }, // space for bottom nav
+            { paddingBottom: 90 },
           ]}
           showsVerticalScrollIndicator={false}
         >

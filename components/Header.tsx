@@ -75,7 +75,6 @@ export default function Header(props: {
           accessibilityRole="button"
           accessibilityLabel="Notifications"
         >
-          {/* FIX: use notifications icon (not bag) */}
           <Ionicons name="notifications-outline" size={18} color={theme.text} />
         </Pressable>
       </View>

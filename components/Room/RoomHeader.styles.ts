@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const roomHeaderStyles = StyleSheet.create({
   wrap: {
-    // paddingTop is overridden in component w/ safe area
     paddingTop: 10,
     paddingHorizontal: 14,
     paddingBottom: 10,
