@@ -3,9 +3,9 @@ import { Text, View } from "react-native";
 import { Theme } from "@/type";
 
 import Card from "@/components/Card";
-import SettingsRow from "./SettingsRow";
 
 import { settingsSectionStyles as styles } from "./SettingsSection.styles";
+import SettingsRow from "./SettingsRow";
 
 export type SettingsItem = {
   title: string;

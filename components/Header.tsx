@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Theme } from "@/type";
 
 import { headerStyles as styles } from "./Header.styles";
+import { router } from "expo-router";
 
 export default function Header(props: {
   theme: Theme;
@@ -13,6 +14,9 @@ export default function Header(props: {
   onPressProfile?: () => void;
   onPressNotifications?: () => void;
 }) {
+  function onPressProfilee(){
+    router.push("/profile")
+  }
   const { theme } = props;
   const insets = useSafeAreaInsets();
 
@@ -47,7 +51,7 @@ export default function Header(props: {
 
       <View style={styles.actions}>
         <Pressable
-          onPress={props.onPressProfile}
+          onPress={onPressProfilee}
           style={({ pressed }) => [
             styles.iconBtn,
             {

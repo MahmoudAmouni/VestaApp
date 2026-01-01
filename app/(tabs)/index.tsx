@@ -73,7 +73,6 @@ export default function HomeScreen() {
           kicker="Home Pulse"
           title="My Home"
           onPressNotifications={() => {}}
-          onPressProfile={() => setActiveTab("Profile")}
         />
 
         <ScrollView
