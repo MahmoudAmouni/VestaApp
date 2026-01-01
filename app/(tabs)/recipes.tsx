@@ -13,7 +13,7 @@ import Button from "@/components/Button";
 import Header from "@/components/Header";
 import HeroCard from "@/components/HeroCard";
 
-import RecipesSection from "@/components/Recipe/RecipeSection";
+import RecipesSection, { Recipe } from "@/components/Recipe/RecipeSection";
 import { recipesScreenStyles as styles } from "./recipe.styles";
 
 const darkTheme: Theme = {
