@@ -17,6 +17,9 @@ export default function Header(props: {
   function onPressProfilee(){
     router.push("/profile")
   }
+  function onPressShoppingList() {
+    router.push("/shoppingList");
+  }
   const { theme } = props;
   const insets = useSafeAreaInsets();
 
@@ -67,7 +70,7 @@ export default function Header(props: {
         </Pressable>
 
         <Pressable
-          onPress={props.onPressNotifications}
+          onPress={onPressShoppingList}
           style={({ pressed }) => [
             styles.iconBtn,
             {
