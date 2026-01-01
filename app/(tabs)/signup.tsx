@@ -1,4 +1,3 @@
-// app/(auth)/signup.tsx
 import React, { useMemo, useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -14,12 +13,24 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import { signupStyles as styles } from "./Signup.styles";
+import { Theme } from "@/type";
+import LoginHeader from "@/components/Login/LoginHeader";
+import TextField from "@/components/Login/TextField";
+import SocialButton from "@/components/Welcome/SocialButton";
 
-import Header from "@/components/auth/Header";
-import TextField from "@/components/auth/TextField";
-import SocialButton from "@/components/auth/SocialButton";
-
-import { signupStyles as styles } from "./Signup.styles.ts";
+  const darkTheme: Theme = (globalThis as any).theme ?? {
+    bg: "#0f0f12",
+    surface: "#15151b",
+    surface2: "#1b1b23",
+    text: "#f3f3f6",
+    textMuted: "rgba(243, 243, 246, 0.68)",
+    border: "rgba(255,255,255,0.10)",
+    borderStrong: "rgba(255,255,255,0.16)",
+    primary: "#c45b3d",
+    navBg: "rgba(15, 15, 18, 0.82)",
+    shadow1: "rgba(0,0,0,0.35)",
+  };
 
 export default function SignUpScreen() {
   const theme = darkTheme;
@@ -70,7 +81,7 @@ export default function SignUpScreen() {
           ]}
           keyboardShouldPersistTaps="handled"
         >
-          <Header theme={theme} title="Sign up" onBack={() => router.back()} />
+          <LoginHeader theme={theme} title="Sign up" onBack={() => router.back()} />
 
           <Card theme={theme} radius={22} style={styles.card}>
             <Text style={[styles.h1, { color: theme.text }]}>
@@ -167,14 +178,14 @@ export default function SignUpScreen() {
                   I agree to the{" "}
                   <Text
                     style={[styles.termsLink, { color: theme.text }]}
-                    onPress={() => router.push("/terms")}
+                    // onPress={() => router.push("/terms")}
                   >
                     Terms
                   </Text>{" "}
                   and{" "}
                   <Text
                     style={[styles.termsLink, { color: theme.text }]}
-                    onPress={() => router.push("/privacy")}
+                    // onPress={() => router.push("/privacy")}
                   >
                     Privacy
                   </Text>
