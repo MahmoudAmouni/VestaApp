@@ -38,17 +38,17 @@ export default function ProfileScreen() {
       {
         title: "Edit Home",
         sub: "Name, default rooms, and basics",
-        onPress: () => {},
+        onPress: () => {router.push("/settings")},
       },
       {
         title: "Notifications",
         sub: "Expiry reminders and device alerts",
-        onPress: () => {},
+        onPress: () => {router.push("/settings");},
       },
       {
         title: "Theme",
         sub: "Dark (default). Switch to light",
-        onPress: () => {},
+        onPress: () => {router.push("/settings");},
       },
     ],
     []

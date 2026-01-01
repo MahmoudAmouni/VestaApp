@@ -38,6 +38,7 @@ export default function RootLayout() {
       <Stack.Screen name="recipeDetail" />
       <Stack.Screen name="ai" />
       <Stack.Screen name="profile" />
+      <Stack.Screen name="settings" />
     </Stack>
   );
 }
