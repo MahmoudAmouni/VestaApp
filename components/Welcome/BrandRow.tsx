@@ -1,8 +1,7 @@
-// components/auth/BrandRow.tsx
 import React from "react";
 import { Text, View } from "react-native";
 import { Theme } from "@/type";
-import { brandRowStyles as styles } from "./BrandRow.styles.ts";
+import { brandRowStyles as styles } from "./BrandRow.styles";
 
 export default function BrandRow(props: { theme: Theme }) {
   const { theme } = props;
