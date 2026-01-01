@@ -2,7 +2,7 @@ import React from "react";
 import { Pressable, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Theme } from "@/type";
-import { headerStyles as styles } from "./LoginHeader.styles.ts";
+import { headerStyles as styles } from "./LoginHeader.styles";
 
 export default function LoginHeader(props: {
   theme: Theme;

@@ -29,7 +29,8 @@ export default function RootLayout() {
         gestureEnabled: true,
       }}
     >
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index" /> 
+      <Stack.Screen name="login" /> 
       <Stack.Screen name="roomDetail" />
       <Stack.Screen name="savedRecipes" />
       <Stack.Screen name="rooms" />
