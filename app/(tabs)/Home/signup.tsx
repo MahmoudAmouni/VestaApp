@@ -55,7 +55,6 @@ export default function SignUpScreen() {
   }, [firstName, lastName, email, password, homeName, agree]);
 
   function onCreateAccount() {
-    // TODO: connect to your signup flow
     router.replace("/");
   }
 
@@ -149,7 +148,6 @@ export default function SignUpScreen() {
                 autoCapitalize="words"
               />
 
-              {/* Inline Terms checkbox */}
               <Pressable
                 onPress={() => setAgree((v) => !v)}
                 style={({ pressed }) => [

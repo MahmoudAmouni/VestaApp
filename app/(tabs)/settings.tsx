@@ -98,7 +98,6 @@ export default function SettingsScreen() {
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
-            {/* Home Settings */}
             <View style={styles.section}>
               <Text style={[styles.sectionTitle, { color: theme.text }]}>
                 Home Settings
@@ -114,7 +113,6 @@ export default function SettingsScreen() {
               />
             </View>
 
-            {/* Notifications */}
             <View style={styles.section}>
               <Text style={[styles.sectionTitle, { color: theme.text }]}>
                 Notifications
@@ -123,7 +121,6 @@ export default function SettingsScreen() {
               <NotificationsCard theme={theme} items={notificationItems} />
             </View>
 
-            {/* Theme */}
             <View style={styles.section}>
               <Text style={[styles.sectionTitle, { color: theme.text }]}>
                 Theme
@@ -132,7 +129,6 @@ export default function SettingsScreen() {
               <ThemeToggle theme={theme} value={mode} onChange={setMode} />
             </View>
 
-            {/* Diet */}
             <View style={styles.section}>
               <Text style={[styles.sectionTitle, { color: theme.text }]}>
                 Diet
@@ -148,7 +144,6 @@ export default function SettingsScreen() {
               />
             </View>
 
-            {/* Allergies */}
             <TagsManagerSection
               theme={theme}
               title="Allergies"
@@ -168,7 +163,6 @@ export default function SettingsScreen() {
               }
             />
 
-            {/* Disliked */}
             <TagsManagerSection
               theme={theme}
               title="Disliked"

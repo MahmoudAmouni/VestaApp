@@ -1,14 +1,14 @@
 import React, { useMemo, useState } from "react";
-import { KeyboardAvoidingView, Platform, View } from "react-native";
+import { KeyboardAvoidingView, Platform, SafeAreaView, StatusBar, View } from "react-native";
 import {
-  SafeAreaView,
+  
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { Theme } from "@/type";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
 
-import { aiChatStyles as styles } from "./AiChatScreen.styles";
+import { aiChatStyles as styles } from "./ai.styles";
 import ChatThread, { ChatMessage } from "@/components/AiChat/ChatThread";
 import ChatComposer from "@/components/AiChat/ChatComposer";
 
@@ -83,6 +83,7 @@ export default function AiChatScreen() {
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: theme.bg }]}>
       <View style={styles.screen}>
+        <StatusBar barStyle="light-content" />
         <Header theme={theme} title="Vesta" kicker="AI" />
 
         <KeyboardAvoidingView

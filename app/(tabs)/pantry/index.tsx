@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { ScrollView, View } from "react-native";
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { SafeAreaView, ScrollView, StatusBar, View } from "react-native";
+import {  useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Theme } from "@/type";
 
@@ -59,6 +59,7 @@ export default function Pantry() {
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: theme.bg }]}>
+      <StatusBar barStyle="light-content" />
       <View style={[styles.screen, { backgroundColor: theme.bg }]}>
         <Header theme={theme} title="Vesta" kicker="Pantry" />
 

@@ -1,4 +1,3 @@
-// app/(auth)/welcome.tsx
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
 import { router } from "expo-router";
@@ -13,6 +12,7 @@ import { welcomeStyles as styles } from "./Welcome.styles";
 import BrandRow from "@/components/Welcome/BrandRow";
 import FeatureRow from "@/components/Welcome/FeatureRow";
 import SocialButton from "@/components/Welcome/SocialButton";
+import { Theme } from "@/type";
 
 const darkTheme: Theme = {
   bg: "#0F0F12",

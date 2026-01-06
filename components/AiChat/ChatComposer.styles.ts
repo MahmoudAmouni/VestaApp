@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
 
 export const chatComposerStyles = StyleSheet.create({
-  wrap: {
+  wrap: {    
     paddingHorizontal: 16,
     paddingTop: 10,
     paddingBottom: 12,
     borderTopWidth: 1,
+    top:-80,
   },
   inputWrap: {
     height: 46,

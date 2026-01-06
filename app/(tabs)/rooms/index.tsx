@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ScrollView, View } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Theme } from "@/type";
@@ -75,8 +75,9 @@ export default function RoomsScreen() {
 
 
   return (
-    <View style={[styles.safe, { backgroundColor: theme.bg }]}>
+    <SafeAreaView style={[styles.safe, { backgroundColor: theme.bg }]}>
       <View style={styles.frame}>
+        <StatusBar barStyle="light-content" />
         <View style={styles.container}>
           <Header
             theme={theme}
@@ -121,7 +122,7 @@ export default function RoomsScreen() {
                   key={room.id}
                   theme={theme}
                   room={room}
-                  onPressOpen={() => router.push("/roomDetail")}
+                  onPressOpen={() => router.push("/rooms/roomDetail")}
                 />
               ))}
             </View>
@@ -132,6 +133,6 @@ export default function RoomsScreen() {
           </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

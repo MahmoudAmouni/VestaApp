@@ -23,12 +23,11 @@ const darkTheme: Theme = {
 export default function LoadingScreen() {
   const theme = darkTheme;
 
-  // Track width to compute pixel-based width/translate animations
   const [trackW, setTrackW] = useState(0);
-  const innerW = useMemo(() => Math.max(0, trackW - 4), [trackW]); // track padding 2*2
+  const innerW = useMemo(() => Math.max(0, trackW - 4), [trackW]); 
 
-  const load = useRef(new Animated.Value(0)).current; // 0..1 loop
-  const pulse = useRef(new Animated.Value(0)).current; // 0..1 loop
+  const load = useRef(new Animated.Value(0)).current; 
+  const pulse = useRef(new Animated.Value(0)).current; 
 
   useEffect(() => {
     const loadLoop = Animated.loop(
@@ -37,7 +36,7 @@ export default function LoadingScreen() {
           toValue: 1,
           duration: 1400,
           easing: Easing.inOut(Easing.ease),
-          useNativeDriver: false, // animating width
+          useNativeDriver: false, 
         }),
         Animated.timing(load, {
           toValue: 0,
@@ -73,13 +72,11 @@ export default function LoadingScreen() {
     };
   }, [load, pulse]);
 
-  // Loader bar: width 30% -> 70% -> 30%
   const widthFrac = load.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: [0.3, 0.7, 0.3],
   });
 
-  // Loader bar: translateX -40% -> 0 -> 40%
   const translateFrac = load.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: [-0.4, 0, 0.4],
@@ -88,7 +85,6 @@ export default function LoadingScreen() {
   const barWidth = innerW ? Animated.multiply(widthFrac, innerW) : 0;
   const barTranslateX = innerW ? Animated.multiply(translateFrac, innerW) : 0;
 
-  // Dot pulse: scale 1 -> 1.08 -> 1 and opacity .85 -> 1 -> .85
   const dotScale = pulse.interpolate({
     inputRange: [0, 1],
     outputRange: [1, 1.08],
@@ -126,14 +122,12 @@ export default function LoadingScreen() {
 
       <View style={styles.center}>
         <Card theme={theme} radius={22} style={styles.card}>
-          {/* Logo */}
           <View
             style={[
               styles.logo,
               { backgroundColor: theme.surface2, borderColor: theme.border },
             ]}
           >
-            {/* pulsing glow behind dot */}
             <Animated.View
               pointerEvents="none"
               style={[
@@ -146,7 +140,6 @@ export default function LoadingScreen() {
               ]}
             />
 
-            {/* pulsing dot */}
             <Animated.View
               pointerEvents="none"
               style={[
@@ -165,7 +158,6 @@ export default function LoadingScreen() {
             Warming up your home...
           </Text>
 
-          {/* Loader */}
           <View
             style={[
               styles.track,

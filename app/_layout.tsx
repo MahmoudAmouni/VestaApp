@@ -1,47 +1,41 @@
 import * as NavigationBar from "expo-navigation-bar";
 import { Stack } from "expo-router";
+import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { Platform } from "react-native";
+import { StatusBar } from "expo-status-bar";
+
+const BG = "#0f0f12";
+
+const NavTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    background: BG,
+    card: BG,
+  },
+};
 
 export default function RootLayout() {
   useEffect(() => {
-    async function setupAndroidNav() {
+    (async () => {
       if (Platform.OS !== "android") return;
-
-      await NavigationBar.setBackgroundColorAsync("#0f0f12");
+      await NavigationBar.setBackgroundColorAsync(BG);
       await NavigationBar.setButtonStyleAsync("light");
-
       await NavigationBar.setVisibilityAsync("hidden");
       await NavigationBar.setBehaviorAsync("inset-swipe");
-    }
-
-    setupAndroidNav();
+    })();
   }, []);
 
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-
-        animation: "fade",
-        animationDuration: 0,
-
-        gestureEnabled: true,
-      }}
-    >
-      <Stack.Screen name="index" /> 
-      <Stack.Screen name="login" /> 
-      <Stack.Screen name="roomDetail" />
-      <Stack.Screen name="savedRecipes" />
-      <Stack.Screen name="rooms" />
-      <Stack.Screen name="pantry" />
-      <Stack.Screen name="recipes" />
-      <Stack.Screen name="recipeDetail" />
-      <Stack.Screen name="ai" />
-      <Stack.Screen name="profile" />
-      <Stack.Screen name="settings" />
-      <Stack.Screen name="shoppingList" />
-      <Stack.Screen name="loading" />
-    </Stack>
+    <ThemeProvider value={NavTheme}>
+      <StatusBar style="light" backgroundColor={BG} />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: BG },
+        }}
+      />
+    </ThemeProvider>
   );
 }

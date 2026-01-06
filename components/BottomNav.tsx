@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, usePathname } from "expo-router";
 import React, { useMemo } from "react";
 import { Pressable, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { bottomstyles as styles } from "./BottomNav.styles";
 
 type NavKey = "Home" | "Rooms" | "Pantry" | "Recipes" | "AI" | "Profile";
@@ -19,6 +20,7 @@ const ROUTES: Record<NavKey, string> = {
 export default function BottomNav(props: { theme: Theme }) {
   const { theme } = props;
   const pathname = usePathname();
+  const insets = useSafeAreaInsets();
 
   const active: NavKey = useMemo(() => {
     if (pathname === "/" || pathname.startsWith("/index")) return "Home";
@@ -64,69 +66,71 @@ export default function BottomNav(props: { theme: Theme }) {
   }
 
   return (
-    <View
-      style={[
-        styles.bottomNav,
-        {
-          backgroundColor: theme.navBg ?? theme.bg,
-          borderColor: theme.border,
-        },
-      ]}
-    >
-      {items.map((it) => {
-        const isActive = active === it.key;
+    <View style={[{ paddingBottom: insets.bottom }]}>
+      <View
+        style={[
+          styles.bottomNav,
+          {
+            backgroundColor: theme.navBg ?? theme.bg,
+            borderColor: theme.border,
+          },
+        ]}
+      >
+        {items.map((it) => {
+          const isActive = active === it.key;
 
-        return (
-          <Pressable
-            key={it.key}
-            onPress={() => goTo(it.key)}
-            style={({ pressed }) => [
-              styles.navItem,
-              { opacity: pressed ? 0.85 : 1 },
-            ]}
-            accessibilityRole="button"
-            accessibilityLabel={it.label}
-          >
-            <View
-              style={[
-                styles.navIconWrap,
-                isActive && {
-                  backgroundColor: theme.surface2,
-                  borderColor: theme.borderStrong ?? theme.border,
-                  borderWidth: 1,
-                },
+          return (
+            <Pressable
+              key={it.key}
+              onPress={() => goTo(it.key)}
+              style={({ pressed }) => [
+                styles.navItem,
+                { opacity: pressed ? 0.85 : 1 },
               ]}
+              accessibilityRole="button"
+              accessibilityLabel={it.label}
             >
               <View
-                style={
-                  isActive
-                    ? {
-                        backgroundColor: theme.primary,
-                        padding: 4,
-                        borderRadius: 6,
-                      }
-                    : undefined
-                }
+                style={[
+                  styles.navIconWrap,
+                  isActive && {
+                    backgroundColor: theme.surface2,
+                    borderColor: theme.borderStrong ?? theme.border,
+                    borderWidth: 1,
+                  },
+                ]}
               >
-                <Ionicons
-                  name={isActive ? it.iconActive : it.icon}
-                  size={20}
-                  color={isActive ? theme.bg : theme.textMuted}
-                />
+                <View
+                  style={
+                    isActive
+                      ? {
+                          backgroundColor: theme.primary,
+                          padding: 4,
+                          borderRadius: 6,
+                        }
+                      : undefined
+                  }
+                >
+                  <Ionicons
+                    name={isActive ? it.iconActive : it.icon}
+                    size={20}
+                    color={isActive ? theme.bg : theme.textMuted}
+                  />
+                </View>
               </View>
-            </View>
 
-            <Text
-              style={[
-                styles.navText,
-                { color: isActive ? theme.text : theme.textMuted },
-              ]}
-            >
-              {it.label}
-            </Text>
-          </Pressable>
-        );
-      })}
+              <Text
+                style={[
+                  styles.navText,
+                  { color: isActive ? theme.text : theme.textMuted },
+                ]}
+              >
+                {it.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
     </View>
   );
 }

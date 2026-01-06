@@ -8,7 +8,7 @@ import ChatMessageBubble from "./ChatMessageBubble";
 export type ChatMessage = {
   id: string;
   role: "user" | "assistant";
-  name: string; // "You" | "Vesta"
+  name: string; 
   text: string;
   time?: string;
 };

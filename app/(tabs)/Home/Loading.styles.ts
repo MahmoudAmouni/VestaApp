@@ -60,7 +60,7 @@ export const loadingStyles = StyleSheet.create({
     height: 34,
     borderRadius: 999,
     position: "absolute",
-    top: 4, // centered behind dot at (14,14)
+    top: 4, 
     right: 4,
   },
 

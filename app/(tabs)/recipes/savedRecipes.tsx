@@ -9,44 +9,35 @@ import {
 import { Theme } from "@/type";
 
 import BottomNav from "@/components/BottomNav";
-import Button from "@/components/Button";
-import Header from "@/components/Header";
 import HeroCard from "@/components/HeroCard";
 
-import RecipesSection, { Recipe } from "@/components/Recipe/RecipeSection";
-import { recipesScreenStyles as styles } from "./recipe.styles";
+import SavedHeader from "@/components/savedRecipes/SavedHeader";
+import SavedRecipesSearchBar from "@/components/savedRecipes/SavedRecipesSearchBar";
+import SavedRecipesSection, {
+  SavedRecipe,
+} from "@/components/savedRecipes/SavedRecipesSection";
+import { savedRecipesStyles as styles } from "./SavedRecipes.styles";
 
-const darkTheme: Theme = {
-  bg: "#0F0F12",
-  surface: "#15151B",
-  surface2: "#1B1B23",
-  text: "#f3f3f6",
-  textMuted: "rgba(243, 243, 246, 0.68)",
-  border: "rgba(255,255,255,0.10)",
-  borderStrong: "rgba(255,255,255,0.16)",
-  primary: "#c45b3d",
-  primaryGlow: "rgba(196, 91, 61, 0.20)",
-  navBg: "rgba(15, 15, 18, 0.82)",
-  shadow1: "rgba(0,0,0,0.35)",
-};
-
-export default function RecipesScreen() {
-  const theme = darkTheme;
+export default function SavedRecipesScreen() {
+  const darktheme: Theme = (globalThis as any).theme ?? {
+    bg: "#0f0f12",
+    surface: "#15151b",
+    surface2: "#1b1b23",
+    text: "#f3f3f6",
+    textMuted: "rgba(243, 243, 246, 0.68)",
+    border: "rgba(255,255,255,0.10)",
+    borderStrong: "rgba(255,255,255,0.16)",
+    primary: "#c45b3d",
+    navBg: "rgba(15, 15, 18, 0.82)",
+    shadow1: "rgba(0,0,0,0.35)",
+  };
+  const theme = darktheme;
   const insets = useSafeAreaInsets();
 
-  const [savedIds, setSavedIds] = useState<Record<string, boolean>>({
-    "4": true,
-  });
+  const [query, setQuery] = useState("");
 
-  const recipes: Recipe[] = useMemo(
+  const saved: SavedRecipe[] = useMemo(
     () => [
-      {
-        id: "1",
-        title: "Creamy Chicken Bowl",
-        subtitle: "Matches: chicken • yogurt • rice",
-        badge: "From Pantry",
-        tags: ["High protein", "Healthy", "Spicy"],
-      },
       {
         id: "2",
         title: "Yogurt Herb Dip + Toast",
@@ -72,14 +63,21 @@ export default function RecipesScreen() {
     []
   );
 
-  function toggleSave(id: string) {
-    setSavedIds((prev) => ({ ...prev, [id]: !prev[id] }));
-  }
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return saved;
+    return saved.filter(
+      (r) =>
+        r.title.toLowerCase().includes(q) ||
+        r.subtitle.toLowerCase().includes(q) ||
+        r.badge.toLowerCase().includes(q)
+    );
+  }, [query, saved]);
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: theme.bg }]}>
       <View style={styles.screen}>
-        <Header theme={theme} title="Vesta" kicker="Recipes" />
+        <SavedHeader theme={theme} title="Saved" onBack={() => router.back()} />
 
         <ScrollView
           style={styles.scroll}
@@ -91,30 +89,27 @@ export default function RecipesScreen() {
         >
           <HeroCard
             theme={theme}
-            title="Use what you have."
-            sub="Vesta pulls ideas from your pantry + world recipes."
+            title="Saved for later."
+            sub="Your favorite ideas, ready when you are."
             kpis={[
-              { label: "Saved Recipes", value: "5" },
+              { label: "Saved Recipes", value: "3" },
               { label: "More Recipes ?", value: "Ask Ai" },
             ]}
-          >
-            <Button
-              theme={theme}
-              variant="secondary"
-              label="Saved recipes"
-              onPress={() => router.push("/savedRecipes")}
-              style={styles.heroBtn}
-            />
-          </HeroCard>
+          />
 
-          <RecipesSection
+          <SavedRecipesSearchBar
             theme={theme}
-            recipes={recipes}
-            isSaved={(id) => !!savedIds[id]}
-            onToggleSave={toggleSave}
+            value={query}
+            onChangeText={setQuery}
+          />
+
+          <SavedRecipesSection
+            theme={theme}
+            recipes={filtered}
             onPressCook={(id) => {
               router.push("/recipeDetail");
             }}
+            onToggleSave={(id) => {}}
           />
         </ScrollView>
 

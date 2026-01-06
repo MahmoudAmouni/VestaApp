@@ -20,7 +20,6 @@ export default function ChatComposer(props: {
         styles.wrap,
         {
           backgroundColor: theme.bg,
-          borderTopColor: theme.border,
         },
       ]}
     >
@@ -34,7 +33,7 @@ export default function ChatComposer(props: {
           value={props.value}
           onChangeText={props.onChangeText}
           placeholder="What to cook for dinner ?"
-          placeholderTextColor={theme.textMuted}
+          placeholderTextColor={theme.borderStrong}
           style={[styles.input, { color: theme.text }]}
           returnKeyType="send"
           onSubmitEditing={props.onSend}
