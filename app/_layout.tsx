@@ -1,24 +1,41 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import * as NavigationBar from "expo-navigation-bar";
+import { Stack } from "expo-router";
+import { DarkTheme, ThemeProvider } from "@react-navigation/native";
+import React, { useEffect } from "react";
+import { Platform } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+const BG = "#0f0f12";
 
-export const unstable_settings = {
-  anchor: '(tabs)',
+const NavTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    background: BG,
+    card: BG,
+  },
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "android") return;
+      await NavigationBar.setBackgroundColorAsync(BG);
+      await NavigationBar.setButtonStyleAsync("light");
+      await NavigationBar.setVisibilityAsync("hidden");
+      await NavigationBar.setBehaviorAsync("inset-swipe");
+    })();
+  }, []);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
+    <ThemeProvider value={NavTheme}>
+      <StatusBar style="light" backgroundColor={BG} />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: BG },
+        }}
+      />
     </ThemeProvider>
   );
 }
